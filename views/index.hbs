@@ -1,0 +1,43 @@
+<div class="container">
+  <h1>URL Shortener</h1>
+  <img src="https://assets-lighthouse.alphacamp.co/uploads/image/file/16716/ExportedContentImage_00.png"
+    alt="URL Shortener" usemap="#workmap" width="200" height="180">
+  <img src="https://miro.medium.com/max/1132/1*j3xVt5zsYuAB19-QATkk_w.png" alt="URL Shortene-1" width="200"
+    height="100">
+  <form action="/shortUrls" method="POST" class="my-4 form-inline">
+    <label for="fullUrl" class="sr-only"></label>
+    <input placeholder="Url" type="url" name="fullUrl" id="fullUrl" class="form-controllor mr-2">
+    <button class="btn btn-success" type="submit" id="button">Transfer</button>
+  </form>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Full Url</th>
+        <th>Short Url</th>
+        <th>Click</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each shortUrls}}
+
+      {{!-- TODO set these values correctly --}}
+
+      <tr>
+        <td>
+          {{!-- <a
+            href="https://www.w3schools.com/html/html_tables.asp">https://www.w3schools.com/html/html_tables.asp</a>
+          --}}
+          <a href="http://localhost:3000/{{this.urlId}}" class="shortUrls">{{this.full}}</a>
+        </td>
+        <td>
+          {{this.short}}
+        </td>
+        <td>
+          {{this.clicks}}
+        </td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
