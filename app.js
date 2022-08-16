@@ -77,7 +77,7 @@ app.get('/:shortUrl', async (req, res) => {
 
 app.post('/shortUrls', async (request, response) => {
   if (request.method == 'POST') {
-    var body = '';
+    const body = '';
 
     request.on('data', function (data) {
       body += data;
