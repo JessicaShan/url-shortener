@@ -19,10 +19,9 @@ app.set('view engine', 'hbs')
 app.get('/', async (req, res) => {
   const shortUrls = await ShortUrl
   .find()
-  .lean();
+  .lean()
   res.render('index', { shortUrls: shortUrls })
 })
-atch(error => console.log(error))
 
 app.get('/:shortUrl', async (req, res) => {
   const query = ShortUrl
