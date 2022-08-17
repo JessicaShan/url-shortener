@@ -1,6 +1,5 @@
 # url-shortener
 
-<img src="https://miro.medium.com/max/1132/1*j3xVt5zsYuAB19-QATkk_w.png">
 <img width="1290" alt="截圖 2022-08-17 14 44 51" src="https://user-images.githubusercontent.com/109747216/185140827-ca1bef4e-2c25-4ee8-a6cc-f4f44bb8530e.png">
 
 ## 專案功能
