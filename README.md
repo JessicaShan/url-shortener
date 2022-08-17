@@ -1,6 +1,6 @@
 # url-shortener
 
-<img width="1290" alt="截圖 2022-08-17 14 44 51" src="https://user-images.githubusercontent.com/109747216/185140827-ca1bef4e-2c25-4ee8-a6cc-f4f44bb8530e.png">
+<img width="1207" alt="截圖 2022-08-17 22 41 53" src="https://user-images.githubusercontent.com/109747216/185239305-ff1ebec1-2fea-4ed6-9fbd-aee432f70c6e.png">
 
 ## 專案功能
 * 使用者可以在表單輸入原始網址，畫面會回傳格式化後的短網址
