@@ -8,47 +8,21 @@ const qs = require('querystring');
 const validUrl = require('valid-url')
 const nanoId = require('nanoid')
 // creating express route handler
-
 const app = express()
-
 const PORT = process.env.PORT || 3000  // 環境使用 process.env.PORT 或本地環境3000 
 
 const ShortUrl = require('./models/shortUrl')
-// // const fullUrl = require('../../models/Url')
-// mongoose.connect(process.env.MONGODB_URI, { 
-//   useNewUrlParser: true, 
-//   useUnifiedTopology: true 
-// });
 
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
-// app.use(express.urlencoded({ extended: false }))
 
-// app.get('/', (req, res) => {
-//   res.render('index')
-// })
 app.get('/', async (req, res) => {
   const shortUrls = await ShortUrl
   .find()
   .lean();
   res.render('index', { shortUrls: shortUrls })
 })
-
-// app.post('/shortUrls', (req, res) => {
-
-//   const fullUrl = FullUrl(req.body.fullUrl);
-//   console.log(req.body)
-//   // await ShortUrl.create({ full: req.body.fullUrl })
-//   ShortUrl.create({ full: fullFull})
-//     .then((data) => res.send(data))
-//     .then((date) => res.redirect('/'))
-//     .catch(error => console.log(error))
-// })
-// app.get("/:shortUrl", (req, res) => {
-//   ShortUrl.findOne({ short: req.params.shortUrl })
-//     .then((url) => res.redirect(url.full))
-//     .catch(() => res.send("輸入有效的網址"));
-// });
+atch(error => console.log(error))
 
 app.get('/:shortUrl', async (req, res) => {
   const query = ShortUrl
