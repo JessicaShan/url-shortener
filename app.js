@@ -1,36 +1,24 @@
 const express = require('express');
-const mongoose = require('mongoose');
 const router = express.Router();
+require('./config/mongoose')
+
 const exphbs = require('express-handlebars') // 樣板引擎指定為 Handlebars
 const qs = require('querystring');
 
 const validUrl = require('valid-url')
-const shortid = require('shortid')
+const nanoId = require('nanoid')
 // creating express route handler
 
-const db = mongoose.connection
-// 連線異常
-db.on('error', () => {
-  console.log('mongodb error!')
-})
-// 連線成功
-db.once('open', () => {
-  console.log('mongodb connected!')
-})
 const app = express()
 
 const PORT = process.env.PORT || 3000  // 環境使用 process.env.PORT 或本地環境3000 
 
 const ShortUrl = require('./models/shortUrl')
 // // const fullUrl = require('../../models/Url')
-mongoose.connect(process.env.MONGODB_URI, { 
-  useNewUrlParser: true, 
-  useUnifiedTopology: true 
-});
-
-// mongoose.connect('mongodb://localhost/url-shortener', {
-//   useNewUrlParser: true, useUnifiedTopology: true
-// })
+// mongoose.connect(process.env.MONGODB_URI, { 
+//   useNewUrlParser: true, 
+//   useUnifiedTopology: true 
+// });
 
 app.engine('hbs', exphbs({ defaultLayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
@@ -40,7 +28,9 @@ app.set('view engine', 'hbs')
 //   res.render('index')
 // })
 app.get('/', async (req, res) => {
-  const shortUrls = await ShortUrl.find().lean();
+  const shortUrls = await ShortUrl
+  .find()
+  .lean();
   res.render('index', { shortUrls: shortUrls })
 })
 
@@ -61,7 +51,8 @@ app.get('/', async (req, res) => {
 // });
 
 app.get('/:shortUrl', async (req, res) => {
-  const query = ShortUrl.findOne({ urlId: req.params.shortUrl });
+  const query = ShortUrl
+  .findOne({ urlId: req.params.shortUrl });
   query.then(function (shortUrl) {
     if (shortUrl instanceof ShortUrl) {
       // already saved, just return
@@ -93,7 +84,7 @@ app.post('/shortUrls', async (request, response) => {
       const fullUrl = post.fullUrl;
 
       // create url id
-      const urlId = shortid.generate();
+      const urlId = nanoId(5)
 
       // check long url
       if (validUrl.isUri(fullUrl)) {
@@ -101,7 +92,6 @@ app.post('/shortUrls', async (request, response) => {
           const query = ShortUrl.findOne({ full: fullUrl });
           query.then(function (url) {
             if (url instanceof ShortUrl) {
-              // already saved, just return
               response.redirect("/");
             } else {
               // create
@@ -126,8 +116,6 @@ app.post('/shortUrls', async (request, response) => {
     });
   }
 });
-
-
 
 app.listen(PORT, () => {    // 設定應用程式監聽的埠號
   console.log(`App is running on http://localhost:${PORT}`)
