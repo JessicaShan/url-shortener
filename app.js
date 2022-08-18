@@ -5,8 +5,9 @@ require('./config/mongoose')
 const exphbs = require('express-handlebars') // 樣板引擎指定為 Handlebars
 const qs = require('querystring');
 
-const validUrl = require('valid-url')
-const nanoId = require('nanoid')
+const validUrl = require('valid-url');
+const shortid = require('shortid');
+
 // creating express route handler
 const app = express()
 const PORT = process.env.PORT || 3000  // 環境使用 process.env.PORT 或本地環境3000 
@@ -57,7 +58,7 @@ app.post('/shortUrls', async (request, response) => {
       const fullUrl = post.fullUrl;
 
       // create url id
-      const urlId = nanoId(5)
+      let urlId = shortid.generate().substring(0, 5);
 
       // check long url
       if (validUrl.isUri(fullUrl)) {
@@ -70,7 +71,7 @@ app.post('/shortUrls', async (request, response) => {
               // create
               const short = "http://localhost" + '/' + urlId;
 
-              shortUrl = new ShortUrl({
+              const shortUrl = new ShortUrl({
                 urlId: urlId,
                 full: fullUrl,
                 short: short
