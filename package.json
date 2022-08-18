@@ -19,7 +19,6 @@
     "mongodb": "^4.8.0",
     "mongoose": "5.13",
     "shortid": "^2.2.16",
-    "nanoid": "4.0.0",
     "valid-url": "^1.0.9"
   },
   "devDependencies": {
