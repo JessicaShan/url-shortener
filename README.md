@@ -19,7 +19,7 @@ npm i express@4.16.4 express-handlebars@3.0.0
 
 4. 資料庫連線設定，在 Terminal 輸入以下內容並替換帳號、密碼
 ```js
-export MONGODB_URI="mongodb+srv://<your account>:<your password>@cluster0.mwwuoe5.mongodb.net/shorten-url?rretryWrites=true&w=majority"
+export MONGODB_URI="mongodb+srv://<your account>:<your password>@cluster0.mwwuoe5.mongodb.net/url-shorten?rretryWrites=true&w=majority"
 ```
 
 5.執行專案
